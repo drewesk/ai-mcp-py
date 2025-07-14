@@ -45,13 +45,12 @@ async def mcp_tools():
         print("********************")
 
     return tools
-async def handle_prompt(tools):
+
+async def handle_prompt(tools, url, user_prompt):
     scraper = tools[1]
     result = await scraper.ainvoke({
-        "url": "https://medium.com/ayuth/install-anaconda-on-macos-with-homebrew-c94437d63a37"
+        "url": url
     })
-
-    user_prompt = "What is this website?"
 
     full_prompt = (
         "Context (scraped data):\n\n"
@@ -74,10 +73,18 @@ async def handle_prompt(tools):
     print(llm_response)
     return llm_response
 
-tools = asyncio.run(mcp_tools())
-asyncio.run(handle_prompt(tools))
+tools = asyncio.run(mcp_tools()) # Get the scraper list to select tools[1]
 
 st.title("🌍 LLM Web Search")
-st.text_input("Enter URL: ")
-st.text_input("Enter a Question: ")
-st.button("Submit")
+url = st.text_input("Enter URL: ")
+user_prompt = st.text_area("Enter a Question: ")
+submit = st.button("Submit")
+
+if submit:
+    with st.spinner("Thinking..."):
+        llm_response = asyncio.run(handle_prompt(
+            tools,
+            url,
+            user_prompt
+        ))
+        st.write(llm_response)
