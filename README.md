@@ -1,7 +1,7 @@
 
-# 🤖 ai_mcp_py — Local AI-Powered Web Search Assistant
+# 🤖 ai_mcp_py — AI-Powered Web Search Assistant
 
-**ai_mcp_py** is a fully local AI assistant that uses Ollama to run a powerful LLM (WhiteRabbitNeo-2.5-Qwen-2.5-Coder-7B) and scrape the web using Bright Data's Unlocker MCP tools — all orchestrated in Python and Streamlit with some Node.js under the hood. No cloud LLMs. No data sharing. Just local compute magic.
+**ai_mcp_py** is a fully local AI assistant that uses Ollama to run a powerful LLM (WhiteRabbitNeo-2.5-Qwen-2.5-Coder-7B or LLM of your choice) and scrape the web using Bright Data's Unlocker MCP tools — all orchestrated in Python and Streamlit with some Node.js under the hood. No cloud LLMs. No data sharing. Just local compute magic.
 
 > 🔒 Local, Private, and Powerful — because your prompts are nobody else's business.
 
