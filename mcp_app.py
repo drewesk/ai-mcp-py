@@ -3,6 +3,7 @@ import sys
 import asyncio
 import itertools
 import contextlib
+import streamlit as st
 from langchain_ollama import OllamaLLM
 from langchain_mcp_adapters.client import MultiServerMCPClient
 
@@ -10,7 +11,7 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 BRD_API_KEY = os.environ.get("BRD_API_KEY")
 
 if not BRD_API_KEY:
-    raise EnvironmentError("BRD_API_KEY is not set in environment variables.")
+    raise EnvironmentError("BRD_API_KEY is not set or accessible.")
 
 mcp = MultiServerMCPClient(
 {
@@ -75,3 +76,8 @@ async def handle_prompt(tools):
 
 tools = asyncio.run(mcp_tools())
 asyncio.run(handle_prompt(tools))
+
+st.title("🌍 LLM Web Search")
+st.text_input("Enter URL: ")
+st.text_input("Enter a Question: ")
+st.button("Submit")
