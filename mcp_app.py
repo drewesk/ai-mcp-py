@@ -26,4 +26,15 @@ async def mcp_tools():
         print(tool.args)
         print("********************")
 
-asyncio.run(mcp_tools())
+    return tools
+async def handle_prompt(tools):
+    scraper = tools[1]
+    result = await scraper.ainvoke({
+        "url": "https://medium.com/ayuth/install-anaconda-on-macos-with-homebrew-c94437d63a37"
+    })
+
+    print(result)
+    return result
+
+tools = asyncio.run(mcp_tools())
+asyncio.run(handle_prompt(tools))
